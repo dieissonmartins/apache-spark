@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import os
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+full_path = os.path.dirname(os.path.realpath(__file__))
 
+# spark-version: spark-3.3.1-bin-hadoop3
+os.environ["SPARK_HOME"] = full_path + "/spark/"
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import findspark
 
+findspark.init()
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+from pyspark.sql import SparkSession
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+spark = SparkSession.builder \
+    .master('local[*]') \
+    .appName("Iniciando com Spark") \
+    .getOrCreate()
+
+print(spark)
