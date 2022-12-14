@@ -18,9 +18,17 @@ spark = SparkSession.builder \
     .config('spark.ui.port', '4050') \
     .getOrCreate()
 
-data = [('dieisson', 18)]
-cols = ['Name', 'Age']
+data = [
+    {
+        'Name': 'dieisson',
+        'Age': 18
+    },
+    {
+        'Name': 'maria',
+        'Age': 22
+    }
+]
 
-df = spark.createDataFrame(data, cols)
+df = spark.createDataFrame(data)
 
 df.show()
