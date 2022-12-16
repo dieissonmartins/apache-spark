@@ -52,7 +52,7 @@ for index, col_name in enumerate(companies_col_names):
     companies = companies.withColumnRenamed(f"_c{index}", col_name)
 
 companies = companies.withColumn('capital_social_da_empresa', f.regexp_replace('capital_social_da_empresa', ',', '.'))
-companies = companies.withColumn('capital_social_da_empresa', companies['capital_social_da_empresa'].cast(DoubleType()))
+companies = companies.withColumn('capital_social_da_empresa', companies.capital_social_da_empresa.cast(DoubleType()))
 
 # imprime o dataframe de empresas
 print(companies.toPandas())
