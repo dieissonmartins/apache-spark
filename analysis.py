@@ -55,7 +55,11 @@ companies = companies.withColumn('capital_social_da_empresa', f.regexp_replace('
 companies = companies.withColumn('capital_social_da_empresa', companies.capital_social_da_empresa.cast(DoubleType()))
 
 # imprime o dataframe de empresas
-print(companies.toPandas())
+print(companies.select(
+    'razao_social_nome_empresarial',
+    'capital_social_da_empresa'
+).toPandas())
+
 companies.printSchema()
 
 # dados socios
