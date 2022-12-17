@@ -74,6 +74,10 @@ partners.select([
     f.count(f.when(f.isnull(c), 1)).alias(c) for c in partners.columns
 ]).show()
 
+# NaN not as number (não é um numero)
+# substitui colunas NaN para 0
+partners.na.fill(0).limit(10).show()
+
 # print(partners)
 
 # dados estabelecimentos
