@@ -108,6 +108,12 @@ companies \
     .orderBy('razao_social_nome_empresarial', ascending=True) \
     .show()
 
+# metodo LIKE
+companies \
+    .select('razao_social_nome_empresarial', 'capital_social_da_empresa') \
+    .where(companies.razao_social_nome_empresarial.like('%IMOVEIS%')) \
+    .orderBy('razao_social_nome_empresarial', ascending=True) \
+    .show()
 
 # dados estabelecimentos
 # path_establishments = full_path + '/tmp/estabelecimentos'
