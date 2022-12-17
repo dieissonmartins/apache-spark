@@ -76,7 +76,8 @@ partners.select([
 
 # NaN not as number (não é um numero)
 # substitui colunas NaN para 0
-partners.na.fill(0).limit(10).show()
+partners.na.fill(0).limit(10).show() # para campos de tipos numerico
+partners.na.fill('-').limit(10).show() # para campos de tipos string
 
 # print(partners)
 
