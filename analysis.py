@@ -111,7 +111,7 @@ companies \
 # metodo LIKE
 companies \
     .select('razao_social_nome_empresarial', 'capital_social_da_empresa') \
-    .where(companies.razao_social_nome_empresarial.like('%IMOVEIS%')) \
+    .where(companies.razao_social_nome_empresarial.like('%IMOVE%')) \
     .orderBy('razao_social_nome_empresarial', ascending=True) \
     .show()
 
