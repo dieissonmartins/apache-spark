@@ -94,6 +94,19 @@ companies \
     .orderBy('razao_social_nome_empresarial', ascending=True) \
     .show()
 
+# where string inicia com % startswith()
+companies \
+    .select('razao_social_nome_empresarial', 'capital_social_da_empresa') \
+    .where(companies.razao_social_nome_empresarial.startswith('REGISTRO')) \
+    .orderBy('razao_social_nome_empresarial', ascending=True) \
+    .show()
+
+# where string finaliza com % endswith()
+companies \
+    .select('razao_social_nome_empresarial', 'capital_social_da_empresa') \
+    .where(companies.razao_social_nome_empresarial.endswith('IMO')) \
+    .orderBy('razao_social_nome_empresarial', ascending=True) \
+    .show()
 
 
 # dados estabelecimentos
