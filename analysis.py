@@ -63,13 +63,18 @@ print(companies.select(
 companies.printSchema()
 
 # dados socios
-# path_partners = full_path + '/tmp/socios'
-# partners = spark.read.csv(path_partners, sep=';', inferSchema=True)
-# partners_count = partners.count()
-# print('Quantidade de socios: ' + str(partners_count))
-# partners.printSchema()
-# partners_pandas = partners.limit(100).toPandas()
-# print(partners_pandas)
+path_partners = full_path + '/tmp/socios'
+partners = spark.read.csv(path_partners, sep=';', inferSchema=True)
+partners_count = partners.count()
+print('Quantidade de socios: ' + str(partners_count))
+partners.printSchema()
+
+print('DataFrame com contagem de colunas no valores nullos')
+partners.select([
+    f.count(f.when(f.isnull(c), 1)).alias(c) for c in partners.columns
+]).show()
+
+# print(partners)
 
 # dados estabelecimentos
 # path_establishments = full_path + '/tmp/estabelecimentos'
