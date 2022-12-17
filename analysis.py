@@ -76,10 +76,16 @@ partners.select([
 
 # NaN not as number (não é um numero)
 # substitui colunas NaN para 0
-partners.na.fill(0).limit(10).show() # para campos de tipos numerico
-partners.na.fill('-').limit(10).show() # para campos de tipos string
+partners.na.fill(0).limit(10).show()  # para campos de tipos numerico
+partners.na.fill('-').limit(10).show()  # para campos de tipos string
 
-# print(partners)
+# ordenando os dados
+# crescente (ascending=True)
+# decrescente (ascending=False)
+companies \
+    .select('razao_social_nome_empresarial', 'capital_social_da_empresa') \
+    .orderBy('razao_social_nome_empresarial', ascending=True) \
+    .show()
 
 # dados estabelecimentos
 # path_establishments = full_path + '/tmp/estabelecimentos'
