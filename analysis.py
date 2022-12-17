@@ -87,6 +87,15 @@ companies \
     .orderBy('razao_social_nome_empresarial', ascending=True) \
     .show()
 
+# where com os dados
+companies \
+    .select('razao_social_nome_empresarial', 'capital_social_da_empresa') \
+    .where('capital_social_da_empresa==4000') \
+    .orderBy('razao_social_nome_empresarial', ascending=True) \
+    .show()
+
+
+
 # dados estabelecimentos
 # path_establishments = full_path + '/tmp/estabelecimentos'
 # establishments = spark.read.csv(path_establishments, sep=';', inferSchema=True)
