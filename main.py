@@ -1,25 +1,18 @@
-import os
+from src.utils.pyspark import Pyspark
 
-full_path = os.path.dirname(os.path.realpath(__file__))
-full_path_spark = full_path + '/spark/'
+spark = Pyspark().init()
 
-# spark-version: spark-3.3.1-bin-hadoop3
-os.environ["SPARK_HOME"] = full_path + "/spark/"
+data = [
+    {'data': 20221213},
+    {'data': 20221214},
+    {'data': 20221215},
+    {'data': 20221216}
+]
 
-import findspark
+# dados dicionario com datas
+df = spark.createDataFrame(data)
 
-findspark.init()
-
-from pyspark.sql import SparkSession
-
-spark = SparkSession.builder \
-    .master('local[*]') \
-    .appName("Iniciando com Spark") \
-    .config('spark.ui.port', '4050') \
-    .getOrCreate()
-
-# spark is an existing SparkSession
-df = spark.read.json(full_path_spark + "examples/src/main/resources/people.json")
-
-# Displays the content of the DataFrame to stdout
+# formato original
 df.show()
+
+df.printSchema()
