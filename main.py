@@ -1,18 +1,8 @@
-from src.utils.pyspark import Pyspark
+from src.drivers.csv_collector import CsvCollector
+from src.stages.extract.extract_companies import ExtractCompanies
 
-spark = Pyspark().init()
+html_collector = CsvCollector()
 
-data = [
-    {'data': 20221213},
-    {'data': 20221214},
-    {'data': 20221215},
-    {'data': 20221216}
-]
-
-# dados dicionario com datas
-df = spark.createDataFrame(data)
-
-# formato original
-df.show()
-
-df.printSchema()
+# carrega dados do csv
+extract_companies = ExtractCompanies(html_collector)
+extract_companies_data = extract_companies.extract()

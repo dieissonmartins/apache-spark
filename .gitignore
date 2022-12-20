@@ -3,3 +3,4 @@ spark
 ngrok-stable
 tmp
 ngrok-stable
+*.pyc
