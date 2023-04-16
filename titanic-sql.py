@@ -39,3 +39,9 @@ titanic.show()
 
 # iniciar uma view sql
 titanic.createOrReplaceTempView('titanic')
+
+spark.sql("""
+    SELECT 
+        Name, Sex, Pclass, Age
+    FROM titanic
+""").show()
