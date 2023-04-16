@@ -51,3 +51,16 @@ titanic.agg(
     f.max('Age').alias('max_idade'),
     f.stddev('Age').alias('desvio_padrao_idade'),
 ).show()
+
+# metricas agrupadas
+(
+    titanic
+    .groupBy('Sex')
+    .agg(
+        f.mean('Age').alias('med_idade'),
+        f.min('Age').alias('min_idade'),
+        f.max('Age').alias('max_idade'),
+        f.stddev('Age').alias('desvio_padrao_idade')
+    )
+    .show()
+)
