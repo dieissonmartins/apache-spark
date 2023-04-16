@@ -14,7 +14,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
 
 spark = SparkSession.builder \
-    .master('local[1]') \
+    .master('local[*]') \
     .appName("Iniciando com Spark") \
     .config('spark.ui.port', '4050') \
     .config("spark.driver.bindAddress", "127.0.0.1") \
