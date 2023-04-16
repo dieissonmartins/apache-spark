@@ -36,3 +36,6 @@ titanic.printSchema()
 
 # view dados
 titanic.show()
+
+# selecionar colunas
+titanic.select('Name', 'Sex', 'Pclass', 'Survived')
