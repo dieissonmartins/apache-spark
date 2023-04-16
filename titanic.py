@@ -43,3 +43,11 @@ titanic.select('Name', 'Sex', 'Pclass', 'Survived')
 
 # filtrar linhas
 titanic.where("Sex='male' AND Survived=1").show()
+
+# agregar valores
+titanic.agg(
+    f.mean('Age').alias('med_idade'),
+    f.min('Age').alias('min_idade'),
+    f.max('Age').alias('max_idade'),
+    f.stddev('Age').alias('desvio_padrao_idade'),
+).show()
