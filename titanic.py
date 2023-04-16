@@ -35,7 +35,11 @@ titanic = (
 titanic.printSchema()
 
 # view dados
-titanic.show()
+limit = 10
+titanic.show(n=limit, truncate=False)
 
 # selecionar colunas
 titanic.select('Name', 'Sex', 'Pclass', 'Survived')
+
+# filtrar linhas
+titanic.where("Sex='male' AND Survived=1").show()
