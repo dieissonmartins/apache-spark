@@ -64,3 +64,17 @@ titanic.agg(
     )
     .show()
 )
+
+# ordenacao dos dados
+(
+    titanic
+    .groupBy('Sex', 'Pclass', 'Survived')
+    .agg(
+        f.mean('Age').alias('med_idade'),
+        f.min('Age').alias('min_idade'),
+        f.max('Age').alias('max_idade'),
+        f.stddev('Age').alias('desvio_padrao_idade')
+    )
+    .orderBy('Pclass', 'Sex', 'Survived')
+    .show()
+)
