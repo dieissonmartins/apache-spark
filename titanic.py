@@ -31,4 +31,8 @@ titanic = (
     .load("https://raw.githubusercontent.com/neylsoncrepalde/titanic_data_with_semicolon/main/titanic.csv")
 )
 
+# ver estrutura
 titanic.printSchema()
+
+# view dados
+titanic.show()
