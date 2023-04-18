@@ -20,6 +20,8 @@ spark = SparkSession.builder \
     .config("spark.driver.bindAddress", "127.0.0.1") \
     .getOrCreate()
 
+filePath = full_path + '/tmp/titanic.csv'
+
 # Leitura de dados
 titanic = (
     spark
@@ -28,7 +30,7 @@ titanic = (
     .option("delimiter", ";")
     .option("header", True)
     .option("inferSchema", True)
-    .load("https://raw.githubusercontent.com/neylsoncrepalde/titanic_data_with_semicolon/main/titanic.csv")
+    .load(filePath)
 )
 
 # ver estrutura
