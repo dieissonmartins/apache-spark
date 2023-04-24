@@ -32,13 +32,13 @@ cards = (
     .csv(full_path + '/tmp/campeonato-brasileiro-cartoes.csv', **params)
 )
 
-goal = (
+goals = (
     spark
     .read
     .csv(full_path + '/tmp/campeonato-brasileiro-gols.csv', **params)
 )
 
-statistic = (
+statistics = (
     spark
     .read
     .csv(full_path + '/tmp/campeonato-brasileiro-estatisticas-full.csv', **params)
@@ -48,12 +48,18 @@ schemafull = """
 ID int, rodada int, data string, hora string, dia string, mandante string, visitante string, formacao_mandante string, formacao_visitante string, tecnico_mandante string, tecnico_visitante string, vencedor string, arena string, mandante_placar int, visitante_placar int, mandante_estado string, visitante_estado string, estado_vencedor string
 """
 
-informations_full = (
+full_informations = (
     spark
     .read
     .csv(full_path + '/tmp/campeonato-brasileiro-full.csv', header=True, sep=",", schema=schemafull)
 )
 
-informations_full.select(
+full_informations.select(
     "ID", "rodada", "data", "hora", "dia"
 ).show()
+
+# start temp views
+cards.createOrReplaceTempView('cards')
+goals.createOrReplaceTempView('goals')
+statistics.createOrReplaceTempView('statistics')
+statistics.createOrReplaceTempView('full_informations')
