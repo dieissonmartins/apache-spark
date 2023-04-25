@@ -62,4 +62,33 @@ full_informations.select(
 cards.createOrReplaceTempView('cards')
 goals.createOrReplaceTempView('goals')
 statistics.createOrReplaceTempView('statistics')
-statistics.createOrReplaceTempView('full_informations')
+full_informations.createOrReplaceTempView('full_informations')
+
+# Testes ------------------------------------|
+
+# 1 - Em quantas partidas o Palmeiras recebeu cartões amarelos quando jogava como visitante?
+
+# with spark
+(
+    full_informations
+    .select('ID', 'visitante')
+    .join(cards, cards.partida_id == full_informations.ID, 'inner')
+    .where("clube = 'Palmeiras' AND cartao = 'Amarelo'")
+    .select('ID')
+    .distinct()
+    .agg(
+        f.count('ID').alias('contagem')
+    )
+    .show()
+)
+
+# with SQL
+spark.sql("""
+SELECT
+    COUNT(DISTINCT a.ID)
+FROM full_informations as a 
+JOIN cards b ON(a.ID = b.partida_id)
+WHERE 
+ b.clube = 'Palmeiras' 
+ AND b.cartao = 'Amarelo'
+""").show()
